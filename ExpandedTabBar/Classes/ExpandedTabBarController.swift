@@ -63,7 +63,7 @@ open class ExpandedTabBarController: UITabBarController {
 
     // MARK: - Gestures
     internal var closeTapGesture: UITapGestureRecognizer!
-
+    internal var forceTapGesture: ForceTouchGestureRecognizer!
 
     // MARK: - Cycle
 
@@ -148,4 +148,17 @@ open class ExpandedTabBarController: UITabBarController {
         self.hideMoreContainer()
     }
 
+    @objc internal func rearragngeItems(sender: ForceTouchGestureRecognizer) {
+        // forceTouched inside moreTabBarItem
+        if tabBar.subviews.last?.frame.contains(sender.location(in: tabBar)) ?? false {
+            // native helper Function can not be called here (see official documentation) -> will just crash
+            // tabBar.beginCustomizingItems(temp)
+            
+            // maybe present the moreNavigationController ?! (hacky)
+            // present(moreNavigationController, animated: true)
+            
+            // or design a custom uicollectionview with draggable cells?
+            // present(customViewController)
+        }
+    }
 }
