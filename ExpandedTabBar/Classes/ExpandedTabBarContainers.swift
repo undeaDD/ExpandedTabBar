@@ -50,6 +50,9 @@ internal extension ExpandedTabBarController {
 
 
     func addGestures() {
+        forceTapGesture = ForceTouchGestureRecognizer(target: self, action: #selector(rearragngeItems))
+        self.tabBar.addGestureRecognizer(forceTapGesture)
+        
         guard options.closeOnTap else { return }
         closeTapGesture = UITapGestureRecognizer(target: self, action: #selector(outsideTapped))
         innerContainer.backgroundColor = .clear
